@@ -60,6 +60,9 @@ module.exports = {
         "slide-left-2": "slide-left-2 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.94) both;"
       }
     },
+    screens: {
+      "1600": "1600px",
+    }
   },
   plugins: [],
 }

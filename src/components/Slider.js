@@ -50,8 +50,8 @@ const Slider = () => {
   }
 
   return (
-    <div className=' w-full overflow-hidden px-[59px]'>
-      <div className='flex gap-8 w-full pt-8'>
+    <div className='overflow-hidden px-[59px]'>
+      <div className='flex gap-8 pt-8'>
         {banner?.map((item, index) => (
           <img
             src={item.banner}

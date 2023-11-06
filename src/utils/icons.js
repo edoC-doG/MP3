@@ -2,8 +2,9 @@ import { MdOutlineLibraryMusic } from 'react-icons/md'
 import { BsDisc } from 'react-icons/bs'
 import { HiOutlineChartPie, HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi'
 import { FaRegFolderOpen } from 'react-icons/fa'
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
-import {TfiSearch} from 'react-icons/tfi'
+import { AiOutlineHeart, AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
+import { TfiSearch } from 'react-icons/tfi'
+import { PiDotsThreeBold } from 'react-icons/pi'
 const icons = {
   MdOutlineLibraryMusic,
   BsDisc,
@@ -13,7 +14,9 @@ const icons = {
   AiOutlineArrowRight,
   HiArrowNarrowLeft,
   HiArrowNarrowRight,
-  TfiSearch
+  TfiSearch,
+  PiDotsThreeBold,
+  AiOutlineHeart
 }
 
 export default icons
