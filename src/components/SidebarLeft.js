@@ -9,7 +9,7 @@ const activeStyle =" py-2 px-[25px] font-bold text-[#32323d] text-[13px] flex ga
 
 const SidebarLeft = () => {
   return (
-    <div className='flex flex-col overflow-y-auto'>
+    <div className='flex flex-col overflow-y-auto bg-[#F2F2F2]'>
       <a href="#!" className='w-full h-[70px] py-[15px] px-[25px] flex justify-start items-center' >
         <img src={logo} alt="" className='w-[120px] h-[40] object-contain' />
       </a>
