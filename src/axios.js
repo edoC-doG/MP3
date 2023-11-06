@@ -1,8 +1,7 @@
 import axios from "axios";
-
 const instance = axios.create({
-    baseURL : process.env.SERVER_API,
-})
+    baseURL: process.env.REACT_APP_SERVER_API,
+});
 
 // Thêm một bộ đón chặn request
 axios.interceptors.request.use(function (config) {

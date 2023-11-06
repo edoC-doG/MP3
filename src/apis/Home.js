@@ -1,4 +1,4 @@
-import axios from '../axios'
+import axios from '../axios.js'
 
 export const getHome = () => new Promise(async(resolve, reject) => {
     try {
