@@ -6,6 +6,22 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundColor: {
+        "primary-100": "#FFFFFF",
+        "primary-200": "#F8F8F8",
+        "primary-500": "#757575",
+        "primary-300": "#F3F3F3",
+        "primary-400": "#E6E6E6",
+        "hover-600": "#9F49CA"
+      },
+      colors: {
+        "primary-100": "#FFFFFF",
+        "primary-200": "#F8F8F8",
+        "primary-500": "#757575",
+        "primary-300": "#F2F2F2",
+        "primary-400": "#E6E6E6",
+        "hover-600": "#9F49CA"
+      },
       keyframes: {
         'slide-right': {
           "0%": {
@@ -41,7 +57,7 @@ module.exports = {
       animation: {
         "slide-right": "slide-right 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.94) both;",
         "slide-left": "slide-left 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.94) both;",
-        "slide-left-2": "slide-left-2 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.94) both;",
+        "slide-left-2": "slide-left-2 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.94) both;"
       }
     },
   },
