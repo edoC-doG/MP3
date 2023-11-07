@@ -1,5 +1,5 @@
 import { MdOutlineLibraryMusic, MdSkipNext, MdSkipPrevious } from 'react-icons/md'
-import { BsDisc, BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
+import { BsDisc, BsFillPlayFill, BsPauseFill, BsMusicNoteBeamed } from 'react-icons/bs'
 import { HiOutlineChartPie, HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi'
 import { FaRegFolderOpen } from 'react-icons/fa'
 import { AiOutlineHeart, AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
@@ -23,7 +23,8 @@ const icons = {
   CiRepeat,
   CiShuffle,
   BsPauseFill,
-  BsFillPlayFill
+  BsFillPlayFill,
+  BsMusicNoteBeamed
 }
 
 export default icons

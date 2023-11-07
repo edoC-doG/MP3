@@ -5,13 +5,13 @@ import { Play, SidebarLeft, Header } from "../../components";
 
 const Public = () => {
   return (
-    <div className='w-full min-h-screen flex flex-col relative bg-primary-100'>
-      <div className='w-full h-full flex flex-auto'>
-        <div className='w-[240px] min-h-screen flex-none'
+    <div className='w-full h-screen flex flex-col relative bg-primary-100'>
+      <div className='w-full h-full flex flex-auto '>
+        <div className='w-[240px] h-full flex-none'
         >
           <SidebarLeft />
         </div>
-        <div className='flex-auto '
+        <div className='flex-auto'
         >
           <div className=' flex items-center h-[70px] px-[59px] w-full mb-5'
           >

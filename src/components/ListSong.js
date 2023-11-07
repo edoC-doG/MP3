@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { ListSongItem } from "../components";
 const ListSong = (props) => {
     const { songList, totalDuration } = props
@@ -18,4 +18,4 @@ const ListSong = (props) => {
     )
 }
 
-export default ListSong
+export default memo(ListSong)
