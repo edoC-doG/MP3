@@ -2,11 +2,14 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getArrSlider } from '../utils/fn'
 import * as actions from '../store/actions'
+import { useNavigate } from 'react-router-dom'
 
 
 const Slider = () => {
   const { banner } = useSelector(state => state.app)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  //animation
   useEffect(() => {
     const sliderEls = document.getElementsByClassName("slider-item");
     let min = 0;
@@ -46,11 +49,15 @@ const Slider = () => {
   const handleClickBanner = (item) => {
     if (item?.type === 1) {
       dispatch(actions.getMusicCur(item.encodeId))
+      dispatch(actions.playMusic(true))
+    } else if (item?.type === 4) {
+      const albumPath = item?.link?.split('.')[0];
+      navigate(albumPath)
     }
   }
 
   return (
-    <div className='overflow-hidden px-[59px]'>
+    <div className='w-full overflow-hidden px-[59px]'>
       <div className='flex gap-8 pt-8'>
         {banner?.map((item, index) => (
           <img
