@@ -3,9 +3,8 @@ import { useParams } from 'react-router-dom'
 import * as apis from "../../apis"
 import moment from 'moment'
 import { ListSong } from '../../components'
-
+import Scrollbars from 'react-custom-scrollbars-2'
 const Album = () => {
-
     const { pid } = useParams()
     const [playData, setPlayData] = useState({})
     useEffect(() => {
@@ -19,8 +18,8 @@ const Album = () => {
         fetchPlayListDetail()
     }, [pid])
     return (
-        <div className='flex gap-8 w-full px-[59px]'>
-            <div className=' flex-none w-1/4 flex flex-col items-center gap-2   '>
+        <div className='flex gap-8 w-full h-full px-[59px] relative'>
+            <div className=' flex-none w-1/4 flex flex-col items-center gap-2 sticky top-0 left-0 '>
                 <img
                     src={playData?.thumbnailM}
                     alt="Hình ảnh bài hát"
@@ -36,13 +35,15 @@ const Album = () => {
                     <span className='flex items-center text-primary-500 text-xs'>{`${Math.round(playData?.like / 1000)}K người yêu thích`}</span>
                 </div>
             </div>
-            <div className='flex-auto'>
-                <span className='text-sm'>
-                    <span className='text-gray-500'>Lời tựa </span>
-                    <span>{playData?.sortDescription}</span>
-                </span>
-                <ListSong songList={playData.song?.items} totalDuration={playData.song?.totalDuration} />
-            </div>
+            <Scrollbars style={{ width: '100%', height: '80%' }}>
+                <div className='flex-auto'>
+                    <span className='text-sm'>
+                        <span className='text-gray-500'>Lời tựa </span>
+                        <span>{playData?.sortDescription}</span>
+                    </span>
+                    <ListSong songList={playData.song?.items} totalDuration={playData.song?.totalDuration} />
+                </div>
+            </Scrollbars>
         </div>
     )
 }

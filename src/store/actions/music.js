@@ -1,6 +1,4 @@
 import actionType from "./actionTypes";
-import * as apis from '../../apis';
-
 
 export const getMusicCur = (songId) => ({
     type: actionType.SET_CUR_MUSIC,
@@ -8,6 +6,6 @@ export const getMusicCur = (songId) => ({
 })
 
 export const playMusic = (flag) => ({
-    type: actionType.SET_CUR_MUSIC,
+    type: actionType.PLAY_MUSIC,
     flag
 })  

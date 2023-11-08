@@ -20,8 +20,7 @@ function App() {
           <Route path={path.HOME} element={<Home />} />
           <Route path={path.MY_MUSIC} element={<Personal />} />
           <Route path={path.ALBUM_TITLE_PID} element={<Album />} />
-
-
+          <Route path={path.PLAYLIST_TITLE_PID} element={<Album />} />
           <Route path={path.STAR} element={<Home />} />
         </Route>
       </Routes>

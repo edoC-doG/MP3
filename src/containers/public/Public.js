@@ -20,7 +20,7 @@ const Public = () => {
           <Outlet />
         </div>
       </div>
-      <div className='flex-none h-[90px] fixed bottom-0 left-0 right-0'>
+      <div className='flex-none h-[90px] sticky bottom-0 left-0 right-0'>
         <Play />
       </div>
     </div>
