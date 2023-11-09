@@ -4,7 +4,7 @@ import * as apis from "../apis"
 import icons from '../utils/icons'
 import * as actions from '../store/actions'
 import moment from 'moment'
-
+import { toast } from 'react-toastify'
 
 const { AiOutlineHeart, PiDotsThreeBold, MdSkipNext, MdSkipPrevious, CiRepeat, CiShuffle, BsFillPlayFill, BsPauseFill } = icons
 var intervalId
@@ -15,6 +15,7 @@ const Play = () => {
     const [audio, setAudio] = useState(new Audio())
     const [curSeconds, setCurrent] = useState(0)
     const thumbRef = useRef()
+    const checkRef = useRef()
 
     useEffect(() => {
         const fetchSongDetail = async () => {
@@ -24,30 +25,34 @@ const Play = () => {
             ])
             if (res1.data.err === 0) {
                 setSong(res1.data.data)
+                setCurrent(0)
             }
             if (res2.data.err === 0) {
                 audio.pause()
                 setAudio(new Audio(res2.data.data[`128`]))
+            } else {
+                setAudio(new Audio())
+                dispatch(actions.playMusic(false))
+                toast.warning(res2.data.msg)
+                setCurrent(0)
+                thumbRef.current.style.cssText = `right : 100%`
             }
         }
         fetchSongDetail()
     }, [curSongId])
 
     useEffect(() => {
+        intervalId && clearInterval(intervalId)
+        audio.pause()
+        audio.load()
         if (isPlaying) {
+            audio.play()
             intervalId = setInterval(() => {
                 let percent = Math.round(audio.currentTime * 10000 / songInfo.duration) / 100
                 thumbRef.current.style.cssText = `right:${100 - percent}%`
                 setCurrent(Math.round(audio.currentTime))
             }, 100)
-        } else {
-            intervalId && clearInterval(intervalId)
         }
-    }, [isPlaying])
-
-    useEffect(() => {
-        audio.load()
-        if (isPlaying) audio.play()
     }, [audio])
 
     const handlePlay = async () => {
@@ -58,6 +63,14 @@ const Play = () => {
             audio.play()
             dispatch(actions.playMusic(true))
         }
+    }
+
+    const handleClickBar = (e) => {
+        const trackRect = checkRef.current.getBoundingClientRect()
+        const percent = Math.round((e.clientX - trackRect.left) * 10000 / trackRect.width) / 100
+        thumbRef.current.style.cssText = `right:${100 - percent}%`
+        audio.currentTime = percent * songInfo.duration / 100
+        setCurrent(Math.round(percent * songInfo.duration / 100))
     }
 
     return (
@@ -95,8 +108,11 @@ const Play = () => {
                 </div>
                 <div className='w-full flex items-center justify-center gap-1 text-xs gap-3 '>
                     <span className='text-[#98989E]'>{moment.utc(curSeconds * 1000).format('mm:ss')}</span>
-                    <div className='w-4/5 h-[3px] relative bg-[#E5E5E5] rounded-sm'>
-                        <div ref={thumbRef} className='absolute top-0 left-0 h-[3px] bg-[#8D22C3] rounded-sm'></div>
+                    <div className='w-4/5 h-[3px] relative bg-[#E5E5E5] rounded-sm hover:h-2 cursor-pointer'
+                        onClick={handleClickBar}
+                        ref={checkRef}
+                    >
+                        <div ref={thumbRef} className='absolute top-0 left-0  h-full bg-[#8D22C3] rounded-sm'></div>
                     </div>
                     <span className='text-[#32323D]'>{moment.utc(songInfo?.duration * 1000).format('mm:ss')}</span>
                 </div>

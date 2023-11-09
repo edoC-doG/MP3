@@ -4,7 +4,7 @@ import path from './utils/path';
 import { useEffect } from "react";
 import * as action from './store/actions'
 import { useDispatch } from "react-redux";
-
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const dispatch = useDispatch()
@@ -24,6 +24,18 @@ function App() {
           <Route path={path.STAR} element={<Home />} />
         </Route>
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
