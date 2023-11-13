@@ -6,11 +6,12 @@ import * as actions from '../store/actions'
 import moment from 'moment'
 import { toast } from 'react-toastify'
 
+
 const { AiOutlineHeart, PiDotsThreeBold, MdSkipNext, MdSkipPrevious, CiRepeat, CiShuffle, BsFillPlayFill, BsPauseFill } = icons
 var intervalId
 const Play = () => {
     const dispatch = useDispatch()
-    const { curSongId, isPlaying } = useSelector(state => state.music)
+    const { curSongId, isPlaying, songs } = useSelector(state => state.music)
     const [songInfo, setSong] = useState(null)
     const [audio, setAudio] = useState(new Audio())
     const [curSeconds, setCurrent] = useState(0)
@@ -31,9 +32,10 @@ const Play = () => {
                 audio.pause()
                 setAudio(new Audio(res2.data.data[`128`]))
             } else {
+                audio.pause()
                 setAudio(new Audio())
                 dispatch(actions.playMusic(false))
-                toast.warning(res2.data.msg)
+                toast.warn(res2.data.msg)
                 setCurrent(0)
                 thumbRef.current.style.cssText = `right : 100%`
             }
@@ -73,6 +75,19 @@ const Play = () => {
         setCurrent(Math.round(percent * songInfo.duration / 100))
     }
 
+    const handleNextSong = () => {
+        if (songs) {
+            let indexSong
+            songs?.forEach((item, idx) => {
+                if (item.encodeId === curSongId) {
+                    indexSong = idx
+                }
+            })
+            dispatch(actions.getMusicCur(songs[indexSong + 1].encodeId))
+            dispatch(actions.playMusic(true))
+        }
+    }
+
     return (
         <div className=' bg-primary-100 border border-primary-200 px-5 h-full flex '>
             <div className="w-[30%] flex-auto flex items-center">
@@ -99,14 +114,17 @@ const Play = () => {
                     >
                         {isPlaying === true ? <BsPauseFill size={24} /> : <BsFillPlayFill size={24} />}
                     </span>
-                    <span className='cursor-pointer'>
+                    <span
+                        className={`${!songs ? "text-gray-500" : "cursor-pointer"}`}
+                        onClick={handleNextSong}
+                    >
                         <MdSkipNext size={20} />
                     </span>
                     <span className='cursor-pointer' title='Bật phát lại tất cả'>
                         <CiRepeat size={20} />
                     </span>
                 </div>
-                <div className='w-full flex items-center justify-center gap-1 text-xs gap-3 '>
+                <div className='w-full flex items-center justify-center gap-3 text-xs '>
                     <span className='text-[#98989E]'>{moment.utc(curSeconds * 1000).format('mm:ss')}</span>
                     <div className='w-4/5 h-[3px] relative bg-[#E5E5E5] rounded-sm hover:h-2 cursor-pointer'
                         onClick={handleClickBar}

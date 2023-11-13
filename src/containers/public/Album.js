@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import * as apis from "../../apis"
+import * as actions from '../../store/actions'
 import moment from 'moment'
 import { ListSong } from '../../components'
 import Scrollbars from 'react-custom-scrollbars-2'
+
+
+
 const Album = () => {
     const { pid } = useParams()
     const [playData, setPlayData] = useState({})
+    const dispatch = useDispatch()
     useEffect(() => {
         const fetchPlayListDetail = async () => {
             const res = await apis.apiGetDetailPlayList(pid)
             if (res?.data.err === 0) {
                 setPlayData(res.data?.data)
+                dispatch(actions.playListSong(res?.data?.data?.song?.items))
             }
         }
-
         fetchPlayListDetail()
     }, [pid])
     return (

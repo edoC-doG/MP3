@@ -12,8 +12,8 @@ const ListSongItem = ({ songData }) => {
     const dispatch = useDispatch()
     const handleClick = () => {
         dispatch(actions.getMusicCur(id))
-        console.log(id)
         dispatch(actions.playMusic(true))
+        dispatch(actions.playAlbum(true))
     }
     return (
         <div

@@ -19,7 +19,7 @@ const Public = () => {
           </div>
           <Outlet />
         </div>
-        <div className='w-[329px] h-full hidden 1600:flex flex-none animate-slide-left'
+        <div className='w-[329px] hidden 1600:flex flex-none animate-slide-left'
         >
           <SidebarRight />
         </div>
