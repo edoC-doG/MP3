@@ -12,7 +12,8 @@ module.exports = {
         "primary-500": "#757575",
         "primary-300": "#F3F3F3",
         "primary-400": "#E6E6E6",
-        "hover-600": "#9F49CA"
+        "hover-600": "#9F49CA",
+        "overlay-30": "rgba(0,0,0,0.5)"
       },
       colors: {
         "primary-100": "#FFFFFF",

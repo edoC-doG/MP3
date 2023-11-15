@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import * as apis from "../../apis"
 import * as actions from '../../store/actions'
 import moment from 'moment'
-import { ListSong } from '../../components'
+import { ListSong, AudioLoading } from '../../components'
 import Scrollbars from 'react-custom-scrollbars-2'
+import icons from '../../utils/icons'
 
-
+const { BsFillPlayFill } = icons
 
 const Album = () => {
     const { pid } = useParams()
+    const { curSongId, isPlaying, songs } = useSelector(state => state.music)
     const [playData, setPlayData] = useState({})
     const dispatch = useDispatch()
     useEffect(() => {
@@ -24,13 +26,25 @@ const Album = () => {
         fetchPlayListDetail()
     }, [pid])
     return (
-        <div className='flex gap-8 w-full h-full px-[59px] relative'>
+        <div className='flex gap-8 w-full h-full px-[59px] relative pt-[40px]'>
             <div className=' flex-none w-1/4 flex flex-col items-center gap-2 sticky top-0 left-0 '>
-                <img
-                    src={playData?.thumbnailM}
-                    alt="Hình ảnh bài hát"
-                    className='w-full object-cover rounded-md shadow-md'
-                />
+                <div className='w-full shadow-xl rounded-md overflow-hidden'>
+                    <div className='relative cursor-pointer hover:scale-110 duration-500'>
+                        <img
+                            src={playData?.thumbnailM}
+                            alt="Hình ảnh bài hát"
+                            className='block w-full object-cover  '
+                        />
+                        <div
+                            className='absolute 
+                        top-0 left-0 bottom-0 right-0 hover:bg-overlay-30 text-white flex items-center justify-center'
+                        >
+                            <span className='p-2 border border-white rounded-full'>
+                                {isPlaying ? <AudioLoading /> : <BsFillPlayFill size={30} />}
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <div className='flex-col flex  items-center'>
                     <h3 className='text-[20px] font-bold text-gray-800'>{playData?.title}</h3>
                     <span className='flex gap-2 items-center text-primary-500 text-xs pb-1'>
