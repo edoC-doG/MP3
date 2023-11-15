@@ -7,7 +7,7 @@ import moment from 'moment'
 import { toast } from 'react-toastify'
 
 
-const { AiOutlineHeart, PiDotsThreeBold, MdSkipNext, MdSkipPrevious, CiRepeat, CiShuffle, BsFillPlayFill, BsPauseFill } = icons
+const { TbRepeatOnce, AiOutlineHeart, PiDotsThreeBold, MdSkipNext, MdSkipPrevious, CiRepeat, CiShuffle, BsFillPlayFill, BsPauseFill } = icons
 var intervalId
 const Play = () => {
     const dispatch = useDispatch()
@@ -15,6 +15,8 @@ const Play = () => {
     const [songInfo, setSong] = useState(null)
     const [audio, setAudio] = useState(new Audio())
     const [curSeconds, setCurrent] = useState(0)
+    const [playSong, setPlay] = useState(false)
+    const [isRepeat, setRepeat] = useState(0)
     const thumbRef = useRef()
     const checkRef = useRef()
 
@@ -47,7 +49,7 @@ const Play = () => {
         intervalId && clearInterval(intervalId)
         audio.pause()
         audio.load()
-        if (isPlaying) {
+        if (isPlaying && thumbRef.current) {
             audio.play()
             intervalId = setInterval(() => {
                 let percent = Math.round(audio.currentTime * 10000 / songInfo.duration) / 100
@@ -56,6 +58,25 @@ const Play = () => {
             }, 100)
         }
     }, [audio])
+
+    useEffect(() => {
+        const handleEnded = () => {
+            if (playSong) {
+                handlePlayList()
+            } else if (isRepeat) {
+                isRepeat === 1 ? handleRepeat() : handleNextSong()
+                console.log(isRepeat)
+            } else {
+                audio.pause()
+                dispatch(actions.playMusic(false))
+            }
+        }
+        audio.addEventListener('ended', handleEnded)
+
+        return () => {
+            audio.removeEventListener('ended', handleEnded)
+        }
+    }, [audio, playSong, isRepeat])
 
     const handlePlay = async () => {
         if (isPlaying) {
@@ -88,6 +109,29 @@ const Play = () => {
         }
     }
 
+    const handlePrevSong = () => {
+        if (songs) {
+            let indexSong
+            songs?.forEach((item, idx) => {
+                if (item.encodeId === curSongId) {
+                    indexSong = idx
+                }
+            })
+            dispatch(actions.getMusicCur(songs[indexSong - 1].encodeId))
+            dispatch(actions.playMusic(true))
+        }
+    }
+
+    const handlePlayList = () => {
+        const random = Math.round(Math.random() * songs?.length) - 1
+        dispatch(actions.getMusicCur(songs[random].encodeId))
+        dispatch(actions.playMusic(true))
+    }
+
+    const handleRepeat = () => {
+        audio.play()
+    }
+
     return (
         <div className=' bg-primary-100 border border-primary-200 px-5 h-full flex '>
             <div className="w-[30%] flex-auto flex items-center">
@@ -103,10 +147,16 @@ const Play = () => {
             </div>
             <div className="w-[40%] flex-auto flex flex-col items-center justify-center gap-1 py-2">
                 <div className='flex  gap-8 justify-center items-center'>
-                    <span className='cursor-pointer' title='Bật phát ngẫu nhiên'>
+                    <span
+                        className={`cursor-pointer ${playSong && 'text-hover-600'}`}
+                        title='Bật phát ngẫu nhiên'
+                        onClick={() => setPlay(prev => !prev)}
+                    >
                         <CiShuffle size={20} />
                     </span>
-                    <span className='cursor-pointer'>
+                    <span className={`${!songs ? "text-gray-500" : "cursor-pointer"}`}
+                        onClick={handlePrevSong}
+                    >
                         <MdSkipPrevious size={20} />
                     </span>
                     <span className='p-1 border border-black rounded-full hover:text-hover-600 hover:border-hover-600 cursor-pointer'
@@ -120,8 +170,12 @@ const Play = () => {
                     >
                         <MdSkipNext size={20} />
                     </span>
-                    <span className='cursor-pointer' title='Bật phát lại tất cả'>
-                        <CiRepeat size={20} />
+                    <span
+                        className={`cursor-pointer ${isRepeat && 'text-hover-600'}`}
+                        title='Bật phát lại tất cả'
+                        onClick={() => setRepeat(prev => prev === 2 ? 0 : prev + 1)}
+                    >
+                        {isRepeat === 1 ? <TbRepeatOnce size={20} /> : <CiRepeat size={20} />}
                     </span>
                 </div>
                 <div className='w-full flex items-center justify-center gap-3 text-xs '>

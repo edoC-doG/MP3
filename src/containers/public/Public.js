@@ -13,18 +13,19 @@ const Public = () => {
         </div>
         <div className='flex-auto'
         >
-          <div className=' flex items-center h-[70px] px-[59px] w-full mb-5'
+          <div className=' flex items-center h-[70px] px-[59px] w-full'
           >
             <Header />
           </div>
           <Outlet />
+          <div className='w-full h-[500px]'></div>
         </div>
         <div className='w-[329px] hidden 1600:flex flex-none animate-slide-left'
         >
           <SidebarRight />
         </div>
       </div>
-      <div className='flex-none h-[90px] sticky bottom-0 left-0 right-0'>
+      <div className='flex-none h-[90px] fixed  bottom-0 left-0 right-0'>
         <Play />
       </div>
     </div>
