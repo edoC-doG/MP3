@@ -5,11 +5,24 @@ import icons from '../utils/icons'
 import * as actions from '../store/actions'
 import moment from 'moment'
 import { toast } from 'react-toastify'
+import { LoadingSong } from './'
 
-
-const { TbRepeatOnce, AiOutlineHeart, PiDotsThreeBold, MdSkipNext, MdSkipPrevious, CiRepeat, CiShuffle, BsFillPlayFill, BsPauseFill } = icons
+const {
+    TbRepeatOnce,
+    AiOutlineHeart,
+    PiDotsThreeBold,
+    MdSkipNext,
+    MdSkipPrevious,
+    CiRepeat,
+    BsMusicNoteList,
+    CiShuffle,
+    BsFillPlayFill,
+    BsPauseFill,
+    RiVolumeMuteLine,
+    RiVolumeUpLine
+} = icons
 var intervalId
-const Play = () => {
+const Play = ({ setShowSideBarR }) => {
     const dispatch = useDispatch()
     const { curSongId, isPlaying, songs } = useSelector(state => state.music)
     const [songInfo, setSong] = useState(null)
@@ -17,15 +30,19 @@ const Play = () => {
     const [curSeconds, setCurrent] = useState(0)
     const [playSong, setPlay] = useState(false)
     const [isRepeat, setRepeat] = useState(0)
+    const [isLoad, setIsLoad] = useState(true)
+    const [volume, setVolume] = useState(100)
     const thumbRef = useRef()
     const checkRef = useRef()
 
     useEffect(() => {
         const fetchSongDetail = async () => {
+            setIsLoad(false)
             const [res1, res2] = await Promise.all([
                 apis.apiGetSongDetail(curSongId),
                 apis.apiGetSong(curSongId)
             ])
+            setIsLoad(true)
             if (res1.data.err === 0) {
                 setSong(res1.data.data)
                 setCurrent(0)
@@ -77,6 +94,10 @@ const Play = () => {
             audio.removeEventListener('ended', handleEnded)
         }
     }, [audio, playSong, isRepeat])
+
+    useEffect(() => {
+        audio.volume = volume / 100
+    }, [volume])
 
     const handlePlay = async () => {
         if (isPlaying) {
@@ -132,6 +153,11 @@ const Play = () => {
         audio.play()
     }
 
+    const handelChangeVolume = (e) => {
+
+
+    }
+
     return (
         <div className=' bg-primary-100 border border-primary-200 px-5 h-full flex '>
             <div className="w-[30%] flex-auto flex items-center">
@@ -162,7 +188,7 @@ const Play = () => {
                     <span className='p-1 border border-black rounded-full hover:text-hover-600 hover:border-hover-600 cursor-pointer'
                         onClick={handlePlay}
                     >
-                        {isPlaying === true ? <BsPauseFill size={24} /> : <BsFillPlayFill size={24} />}
+                        {!isLoad ? <LoadingSong /> : isPlaying === true ? <BsPauseFill size={24} /> : <BsFillPlayFill size={24} />}
                     </span>
                     <span
                         className={`${!songs ? "text-gray-500" : "cursor-pointer"}`}
@@ -189,8 +215,24 @@ const Play = () => {
                     <span className='text-[#32323D]'>{moment.utc(songInfo?.duration * 1000).format('mm:ss')}</span>
                 </div>
             </div>
-            <div className="w-[30%] flex-auto">
-                Volumn
+            <div className="w-[30%] flex-auto flex items-center justify-end gap-4 cursor-pointer">
+                <div className='flex gap-2 items-center'>
+                    <span onClick={() => setVolume(prev => +prev === 0 ? 60 : 0)}>{+volume === 0 ? <RiVolumeMuteLine size={18} /> : <RiVolumeUpLine size={18} />}</span>
+                    <input
+                        type="range"
+                        step={1}
+                        min={0}
+                        max={100}
+                        value={volume}
+                        onChange={(e) => setVolume(e.target.value)}
+                    />
+                </div>
+                <span
+                    className='p-1 rounded-md  hover:bg-primary-300 '
+                    onClick={() => setShowSideBarR(prev => !prev)}
+                >
+                    <BsMusicNoteList size={18} />
+                </span>
             </div>
         </div>
     )
