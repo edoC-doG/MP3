@@ -14,6 +14,10 @@ export const playAlbum = (flag) => ({
     type: actionType.SET_ALBUM,
     flag
 })
+export const loading = (flag) => ({
+    type: actionType.LOADING,
+    flag
+})
 
 export const playListSong = (songs) => ({
     type: actionType.PLAY_LIST,

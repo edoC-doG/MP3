@@ -9,6 +9,12 @@ export { default as ListSongItem } from './ListSongItem';
 export { default as Section } from './Section';
 export { default as AudioLoading } from './AudioLoading';
 export { default as LoadingSong } from './LoadingSong';
+export { default as Loading } from './Loading';
+export { default as ItemSong } from './ItemSong';
+export { default as NewRelease } from './NewRelease';
+export { default as TabRelease } from './TabRelease';
+
+
 
 
 

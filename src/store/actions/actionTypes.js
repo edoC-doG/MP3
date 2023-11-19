@@ -1,7 +1,7 @@
 const actionType = {
     GET_HOME: "GET_HOME",
     SET_CUR_MUSIC: "SET_CUR_MUSIC",
-
+    LOADING: "LOADING",
     //Music
 
     PLAY_MUSIC: "PLAY_MUSIC",

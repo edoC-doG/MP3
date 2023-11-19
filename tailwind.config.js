@@ -53,12 +53,23 @@ module.exports = {
             "-webkit-transform": "translateX(0);",
             transform: "translateX(0);"
           },
+        },
+        'scale-up-center': {
+          "0%": {
+            "-webkit-transform": "translateX(0);",
+            transform: "translateX(0);"
+          },
+          "100%": {
+            "-webkit-transform": "translateX(1);",
+            transform: "translateX(1);"
+          },
         }
       },
       animation: {
         "slide-right": "slide-right 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.94) both;",
         "slide-left": "slide-left 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.94) both;",
-        "slide-left-2": "slide-left-2 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.94) both;"
+        "slide-left-2": "slide-left-2 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.94) both;",
+        "scale-up-center": "scale-up-center 0.3s cubic-bezier(0.25, 0.45, 0.45, 0.94) both;"
       },
       flex: {
         '4': '4 4 0%'
