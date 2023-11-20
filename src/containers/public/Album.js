@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import * as apis from "../../apis"
 import * as actions from '../../store/actions'
@@ -11,6 +11,7 @@ import icons from '../../utils/icons'
 const { BsFillPlayFill } = icons
 
 const Album = () => {
+    const location = useLocation()
     const { pid } = useParams()
     const { isPlaying } = useSelector(state => state.music)
     const [playData, setPlayData] = useState({})
@@ -27,6 +28,14 @@ const Album = () => {
         }
         fetchPlayListDetail()
     }, [pid])
+
+    useEffect(() => {
+        if (location.state?.playAlbum === true) {
+            const randomSongIdx = Math.round(Math.random() * playData?.song?.items?.length) - 1
+            dispatch(actions.getMusicCur(playData?.song?.items[randomSongIdx]?.encodeId))
+            dispatch(actions.playMusic(true))
+        }
+    }, [pid, playData])
     return (
         <div className='flex gap-8 w-full h-full px-[59px] relative pt-[40px] animate-scale-up-center'>
             <div className=' flex-none w-1/4 flex flex-col items-center gap-2 sticky top-0 left-0 '>

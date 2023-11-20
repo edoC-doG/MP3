@@ -13,6 +13,8 @@ export { default as Loading } from './Loading';
 export { default as ItemSong } from './ItemSong';
 export { default as NewRelease } from './NewRelease';
 export { default as TabRelease } from './TabRelease';
+export { default as SectionItem } from './SectionItem';
+
 
 
 
