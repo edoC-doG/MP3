@@ -94,7 +94,8 @@ module.exports = {
         "scale-down-image": "scale-down-image 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.94) both;",
       },
       flex: {
-        '4': '4 4 0%'
+        '4': '4 4 0%',
+        '6': '6 6 0%'
       }
     },
     screens: {

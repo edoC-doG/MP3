@@ -29,7 +29,7 @@ const SectionItem = ({ link, thumbnailM, title, sortDescription, artistsNames, d
             <div
                 onMouseEnter={handleMouse}
                 onMouseLeave={handleMove}
-                class=" w-full relative overflow-hidden rounded-lg "
+                className=" w-full relative overflow-hidden rounded-lg "
             >
                 {isHover && <div className=' flex items-center justify-center gap-2 absolute top-0 bottom-0 left-0 right-0 z-40 bg-overlay-30 text-white rounded-lg '  >
                     <span><AiOutlineHeart size={25} /></span>
