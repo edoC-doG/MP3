@@ -42,14 +42,16 @@ const NewRelease = () => {
             </div>
             <div className='flex flex-wrap w-full min-h-[190px] h-[325px] overflow-hidden'>
                 {playList?.map((item) => (
-                    <ItemSong
-                        key={item.encodeId}
-                        thumbnail={item.thumbnail}
-                        title={item.title}
-                        artists={item.artistsNames}
-                        releaseDate={item.releaseDate}
-                        sid={item.encodeId}
-                    />
+                    <div class="w-[45%] min-[1024px]:w-[30%]">
+                        <ItemSong
+                            key={item.encodeId}
+                            thumbnail={item.thumbnail}
+                            title={item.title}
+                            artists={item.artistsNames}
+                            releaseDate={item.releaseDate}
+                            sid={item.encodeId}
+                        />
+                    </div>
                 ))}
             </div>
         </div>

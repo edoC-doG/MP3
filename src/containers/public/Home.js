@@ -3,6 +3,7 @@ import { Section, Slider, NewRelease, ChartSection } from '../../components';
 import { useSelector } from 'react-redux';
 import WeekRank from './WeekRank';
 import { Link } from 'react-router-dom';
+import { data } from 'autoprefixer';
 
 
 const Home = () => {
@@ -11,11 +12,11 @@ const Home = () => {
     <div className='overflow-y-auto w-full'>
       <Slider />
       <NewRelease />
-      <Section data={chill} />
-      <Section data={loveLife} />
-      <Section data={remix} />
-      <Section data={mood} />
-      <Section data={artistsTrending} />
+      {chill && <Section data={chill} />}
+      {loveLife && <Section data={loveLife} />}
+      {remix && <Section data={remix} />}
+      {mood && <Section data={mood} />}
+      {artistsTrending && <Section data={artistsTrending} />}
       <ChartSection />
       <div className='flex items-center px-[43px] w-full mt-8'>
         {weekChart?.map(item => (
@@ -24,8 +25,8 @@ const Home = () => {
           </Link>
         ))}
       </div>
-      <Section data={top100} />
-      <Section data={albumHot} />
+      {top100 && <Section data={top100} />}
+      {albumHot && <Section data={albumHot} />}
       <div className='w-full h-[500px]'>
 
       </div>

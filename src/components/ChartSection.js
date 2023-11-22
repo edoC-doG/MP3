@@ -2,33 +2,84 @@ import React, { memo, useEffect, useState } from 'react'
 import { Line } from 'react-chartjs-2'
 import { Chart } from 'chart.js/auto'
 import { useSelector } from 'react-redux';
-
+import chartImage from "../assets/imgs/chart.png"
+import { ItemSong } from './';
 const ChartSection = () => {
-    const [data, setData] = useState({})
+    const [data, setData] = useState(null)
     const { chart, rank } = useSelector(state => state.app)
+    // const result = Array.isArray(rank)
+    //     ? rank?.filter((i, idx) => idx < 3)
+    //     : [];
+    // console.log(Object.values(result));
+    // console.log(object)
+    const result = Object.values(rank).filter((i, idx) => {
+        return idx < 3;
+    });
+    const options = {
+        responsive: true,
+        pointRadius: 0,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                ticks: { display: false },
+                grid: { color: 'rgba(255,255,255,0.3)', drawTicks: false },
+                min: chart?.minScore,
+                max: chart?.maxScore,
+                border: { dash: [4, 4] }
+            },
+            x: {
+                ticks: { color: 'white' },
+                grid: { color: 'transparent' },
+            }
+        },
+        plugins: {
+            legend: false
+        },
+        hover: {
+            mode: 'dataset',
+            intersect: false,
+        }
+    }
     useEffect(() => {
-        const labels = chart?.times?.filter(item => +item.hour % 2 === 0)?.map(item => item.hour)
+        const labels = (chart?.times?.filter(item => + item.hour % 2 === 0)?.map((item) => `${item.hour}:00`) || [])
         const datasets = []
         if (chart?.items) {
             for (let i = 0; i < 3; i++) {
                 datasets.push({
-                    data: chart?.items[Object.keys(chart?.items)[i]]?.filter(item => +item.hour % 2 === 0)?.map(item => item.counter)
+                    data: ((chart?.items[Object.keys(chart?.items)[i]]?.filter(item => + item.hour % 2 === 0)?.map((item) => item.counter)) || []),
+                    borderColor: i === 0 ? '#4A90E2' : i === 1 ? '#E14F50' : '#28B99A',
+                    tension: 0.2,
+                    borderWidth: 2,
+                    pointBackgroundColor: 'white',
+                    pointHoverRadius: 3,
+                    pointBorderColor: i === 0 ? '#4A90E2' : i === 1 ? '#E14F50' : '#28B99A',
+                    pointHoverBorderWidth: 3
                 })
             }
             setData({ labels, datasets })
         }
     }, [chart])
     return (
-        <div className='h-[375px] px-[59px] mt-12 relative   '>
-            <div className=' bg-gradient-to-tr from-[rgba(65,15,101,0.95)] to-[#50259a] rounded-md absolute top-0 bottom-0 left-[59px] right-[59px]'></div>
-            <div className='absolute z-10 top-0 bottom-0 left-[59px] right-[59px] p-5'>
+        <div className=' px-[59px] mt-12 relative max-h-[430px]'>
+            <img src={chartImage} alt="" className='w-full object-cover rounded-md max-h-[430px]' />
+            <div className='absolute rounded-md top-0 bottom-0 left-[59px] right-[59px] z-10 bg-gradient-to-tr from-[rgba(65,15,101,0.95)] to-[#b122b9] '></div>
+            <div className='absolute z-20 top-0 bottom-0 left-[59px] right-[59px] p-5 flex flex-col'>
                 <h3 className='text-2xl text-white font-bold'>#zingchart</h3>
-                <div className='flex gap-4'>
-                    <div className='flex-4 border border-white'>
-                        rank
+                <div className='flex gap-4 h-full'>
+                    <div className='flex-3 border border-white'>
+                        {result?.map((item, index) => (
+                            <ItemSong
+                                thumbnail={item.thumbnail}
+                                artists={item.artistsNames}
+                                title={item.title}
+                                sid={item.encodeId}
+                                order={index + 1}
+                                percent={Math.round(item.score * 100 / chart?.totalScore)}
+                            />
+                        ))}
                     </div>
-                    <div className='flex-6 border border-white'>
-                        <Line data={data} />
+                    <div className='flex-7 h-full '>
+                        {data && (<Line data={data} options={options} />)}
                     </div>
                 </div>
             </div>
