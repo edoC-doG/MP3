@@ -1,17 +1,22 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { Line } from 'react-chartjs-2'
 import { Chart } from 'chart.js/auto'
 import { useSelector } from 'react-redux';
 import chartImage from "../assets/imgs/chart.png"
 import { ItemSong } from './';
+import _ from 'lodash';
 const ChartSection = () => {
     const [data, setData] = useState(null)
     const { chart, rank } = useSelector(state => state.app)
+    const chartRef = useRef()
+    const [tooltipState, setTooltipState] = useState({
+        opacity: 0,
+        top: 0,
+        left: 0
+    })
     // const result = Array.isArray(rank)
     //     ? rank?.filter((i, idx) => idx < 3)
     //     : [];
-    // console.log(Object.values(result));
-    // console.log(object)
     const result = Object.values(rank).filter((i, idx) => {
         return idx < 3;
     });
@@ -33,7 +38,22 @@ const ChartSection = () => {
             }
         },
         plugins: {
-            legend: false
+            legend: false,
+            tooltip: {
+                enabled: false,
+                external: ({ tooltip }) => {
+                    if (!chartRef || !chartRef.current) return
+                    if (tooltip.opacity === 0) {
+                        if (tooltipState.opacity !== 0) setTooltipState(prev => ({ ...prev, opacity: 0 }))
+                    }
+                    const newTooltipDate = {
+                        opacity: 1,
+                        left: tooltip.cateX,
+                        top: tooltip.cateY,
+                    }
+                    if (!_.isEqual(tooltip, newTooltipDate)) setTooltipState(newTooltipDate)
+                }
+            }
         },
         hover: {
             mode: 'dataset',
@@ -63,10 +83,10 @@ const ChartSection = () => {
         <div className=' px-[59px] mt-12 relative max-h-[430px]'>
             <img src={chartImage} alt="" className='w-full object-cover rounded-md max-h-[430px]' />
             <div className='absolute rounded-md top-0 bottom-0 left-[59px] right-[59px] z-10 bg-gradient-to-tr from-[rgba(65,15,101,0.95)] to-[#b122b9] '></div>
-            <div className='absolute z-20 top-0 bottom-0 left-[59px] right-[59px] p-5 flex flex-col'>
+            <div className='absolute z-20 top-0 bottom-0 left-[59px] right-[59px] p-5 flex flex-col gap-8'>
                 <h3 className='text-2xl text-white font-bold'>#zingchart</h3>
                 <div className='flex gap-4 h-full'>
-                    <div className='flex-3 border border-white'>
+                    <div className='flex-3 flex flex-col h-[10%] gap-4'>
                         {result?.map((item, index) => (
                             <ItemSong
                                 thumbnail={item.thumbnail}
@@ -74,12 +94,12 @@ const ChartSection = () => {
                                 title={item.title}
                                 sid={item.encodeId}
                                 order={index + 1}
-                                percent={Math.round(item.score * 100 / chart?.totalScore)}
+                                percent={Math.round(+item.score * 100 / chart?.totalScore)}
                             />
                         ))}
                     </div>
-                    <div className='flex-7 h-full '>
-                        {data && (<Line data={data} options={options} />)}
+                    <div className='flex-7 h-[90%] '>
+                        {data && (<Line ref={chartRef} data={data} options={options} />)}
                     </div>
                 </div>
             </div>
