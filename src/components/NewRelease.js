@@ -41,14 +41,15 @@ const NewRelease = () => {
                 </button>
             </div>
             <div className='flex flex-wrap w-full min-h-[190px] h-[325px] overflow-hidden'>
-                {playList?.map((item, idx) => (
+                {playList?.map((item) => (
                     <div className="w-[45%] min-[1024px]:w-[30%]">
                         <ItemSong
-                            thumbnail={item.thumbnail}
-                            title={item.title}
-                            artists={item.artistsNames}
-                            releaseDate={item.releaseDate}
-                            sid={item.encodeId}
+                            key={item?.encodeId}
+                            thumbnail={item?.thumbnail}
+                            title={item?.title}
+                            artists={item?.artistsNames}
+                            releaseDate={item?.releaseDate}
+                            sid={item?.encodeId}
                         />
                     </div>
                 ))}

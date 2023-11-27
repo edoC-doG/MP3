@@ -23,6 +23,14 @@ export const playListSong = (songs) => ({
     type: actionType.PLAY_LIST,
     songs
 })
+export const setCurSongData = (data) => ({
+    type: actionType.SET_CUR_SONG_DATA,
+    data
+})
+export const setCurListData = (pid) => ({
+    type: actionType.SET_CUR_PLAYLIST_DATA,
+    pid
+})
 // export const fetchPlayListDetail = (pid) => async (dispatch) => {
 //     try {
 //         const res = await apis.apiGetDetailPlayList(pid)

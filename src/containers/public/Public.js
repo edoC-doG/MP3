@@ -26,7 +26,7 @@ const Public = () => {
             </Scrollbars>
           </div>
         </div>
-        {isShowSideBarR === true && <div className='w-[329px] hidden 1600:flex flex-none animate-slide-left'>
+        {isShowSideBarR === true && <div className='w-[329px] h-screen hidden 1600:flex flex-none animate-slide-left'>
           <SidebarRight />
         </div>}
       </div>
