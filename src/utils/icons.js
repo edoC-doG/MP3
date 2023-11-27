@@ -8,6 +8,7 @@ import { TbRepeatOnce } from 'react-icons/tb'
 import { PiDotsThreeBold } from 'react-icons/pi'
 import { CiRepeat, CiShuffle } from 'react-icons/ci'
 import { RiVolumeUpLine, RiVolumeMuteLine } from "react-icons/ri";
+import { ImBin } from "react-icons/im"
 const icons = {
   RiVolumeUpLine,
   RiVolumeMuteLine,
@@ -31,7 +32,8 @@ const icons = {
   BsMusicNoteBeamed,
   BsDot,
   TbRepeatOnce,
-  BsMusicNoteList
+  BsMusicNoteList,
+  ImBin
 }
 
 export default icons

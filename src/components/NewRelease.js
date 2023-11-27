@@ -41,10 +41,9 @@ const NewRelease = () => {
                 </button>
             </div>
             <div className='flex flex-wrap w-full min-h-[190px] h-[325px] overflow-hidden'>
-                {playList?.map((item) => (
-                    <div class="w-[45%] min-[1024px]:w-[30%]">
+                {playList?.map((item, idx) => (
+                    <div className="w-[45%] min-[1024px]:w-[30%]">
                         <ItemSong
-                            key={item.encodeId}
                             thumbnail={item.thumbnail}
                             title={item.title}
                             artists={item.artistsNames}

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../store/actions';
 
 
-const ItemSong = ({ thumbnail, title, artists, releaseDate, sid, order, percent }) => {
+const ItemSong = ({ thumbnail, title, artists, releaseDate, sid, order, percent, style }) => {
     const dispatch = useDispatch()
     return (
         <div
@@ -14,10 +14,11 @@ const ItemSong = ({ thumbnail, title, artists, releaseDate, sid, order, percent 
                 dispatch(actions.getMusicCur(sid))
                 dispatch(actions.playMusic(true))
             }}
-            className={`w-full flex flex-auto justify-between items-center p-[10px] gap-[10px] rounded-md cursor-pointer ${order ? 'text-white bg-[#4D2868]  hover:bg-[#954EA7]' : 'text-black  hover:bg-primary-400 '}`}
+            className={`w-full flex flex-auto justify-between items-center p-[10px] gap-[10px] rounded-md cursor-pointer ${style || 'text-black  hover:bg-primary-400 '
+                }`}
         >
             <div className='flex gap-4 '>
-                {order && <span className={`${order === 1 ? '' : ''} text-white drop-shadow-md text-[32px] m-auto`}>{order}</span>}
+                {order && <span className={`${order === 1 ? 'text-shadow-no1' : order === 2 ? 'text-shadow-no2' : 'text-shadow-no3'} text-[rgba(65,15,101,0.95)] text-[32px] m-auto`}>{order}</span>}
                 <img src={thumbnail} alt="thumbnail" className='w-[60px] h-[60px] object-cover rounded-md' />
                 <div className='flex flex-col'>
                     <span className='text-sm font-semibold'>{title}</span>
@@ -25,7 +26,7 @@ const ItemSong = ({ thumbnail, title, artists, releaseDate, sid, order, percent 
                     {releaseDate && <span className={`text-xs opacity-70`}>{moment(releaseDate * 1000).fromNow()}</span>}
                 </div>
             </div>
-            {percent && <span>{`${percent}%`}</span>}
+            {percent && <span className='font-bold'>{`${percent}% `}</span>}
         </div>
     )
 }
