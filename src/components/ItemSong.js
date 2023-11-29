@@ -6,21 +6,21 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../store/actions';
 
 
-const ItemSong = ({ thumbnail, title, artists, releaseDate, sid, order, percent, style, sm }) => {
+const ItemSong = ({ thumbnail, title, artists, releaseDate, sid, order, percent, style, size }) => {
     const dispatch = useDispatch()
     return (
         <div
             onClick={() => {
                 dispatch(actions.getMusicCur(sid))
                 dispatch(actions.playMusic(true))
-                dispatch(actions.setRecent({thumbnail, title, sid, artists}))
+                dispatch(actions.setRecent({ thumbnail, title, sid, artists }))
             }}
             className={`w-full flex flex-auto justify-between items-center p-[10px] gap-[10px] rounded-md cursor-pointer ${style || 'text-black  hover:bg-primary-400 '
                 }`}
         >
             <div className='flex gap-4 '>
                 {order && <span className={`${order === 1 ? 'text-shadow-no1' : order === 2 ? 'text-shadow-no2' : 'text-shadow-no3'} text-[rgba(65,15,101,0.95)] text-[32px] m-auto`}>{order}</span>}
-                <img src={thumbnail} alt="thumbnail" className={`${sm ? 'w-[40px] h-[40px]' : 'w-[60px] h-[60px]'} object-cover rounded-md`} />
+                <img src={thumbnail} alt="thumbnail" className={`${size || 'w-[60px] h-[60px]'} object-cover rounded-md`} />
                 <div className='flex flex-col'>
                     <span className='text-sm font-semibold'>{title?.length > 30 ? `${title.slice(0, 30)}...` : title}</span>
                     <span className='text-xs opacity-70'>{artists?.length > 30 ? `${artists.slice(0, 30)}...` : artists}</span>

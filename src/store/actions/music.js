@@ -1,4 +1,5 @@
 import actionType from "./actionTypes";
+import * as apis from '../../apis'
 
 export const getMusicCur = (songId) => ({
     type: actionType.SET_CUR_MUSIC,
@@ -35,19 +36,18 @@ export const setRecent = (data) => ({
     type: actionType.SET_RECENT,
     data
 })
-// export const fetchPlayListDetail = (pid) => async (dispatch) => {
-//     try {
-//         const res = await apis.apiGetDetailPlayList(pid)
-//         if (res?.data.err === 0) {
-//             dispatch({
-//                 type: actionType.PLAY_LIST,
-//                 songs: res.data?.data?.song?.items
-//             })
-//         }
-//     } catch (error) {
-//         dispatch({
-//             type: actionType.PLAY_LIST,
-//             songs: null,
-//         })
-//     }
-// }
+export const search = (keyword) => async (dispatch) => {
+    try {
+        const res = await apis.apiSearch(keyword)
+        if (res.data.err === 0) {
+            dispatch({ type: actionType.SEARCH, data: res.data.data })
+        } else {
+            dispatch({ type: actionType.SEARCH, data: null })
+        }
+    } catch (error) {
+        dispatch({
+            type: actionType.SEARCH,
+            data: null
+        })
+    }
+}

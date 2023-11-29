@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Login, Public, Personal, Album, WeekRank, ZingChart } from './containers/public';
+import { Home, Login, Public, Personal, Album, WeekRank, ZingChart, Search, SearchAll, SearchSong } from './containers/public';
 import path from './utils/path';
 import { useEffect } from "react";
 import * as action from './store/actions'
@@ -26,6 +26,10 @@ function App() {
             <Route path={path.WEEKRANK_TITLE_PID} element={<WeekRank />} />
             <Route path={path.ZING_CHART} element={<ZingChart />} />
             <Route path={path.STAR} element={<Home />} />
+            <Route path={path.SEARCH} element={<Search />}>
+              <Route path={path.ALL} element={<SearchAll />} />
+              <Route path={path.SONG} element={<SearchSong />} />
+            </Route>
           </Route>
         </Routes>
       </div>

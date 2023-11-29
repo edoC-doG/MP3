@@ -56,7 +56,6 @@ const SidebarRight = () => {
                                     title={item?.title}
                                     artists={item?.artists}
                                     sid={item?.encodeId}
-                                    sm
                                 />
                             ))}
                         </div>}
@@ -70,7 +69,7 @@ const SidebarRight = () => {
                             title={curSongData?.title}
                             artists={curSongData?.artistsNames}
                             sid={curSongData?.encodeId}
-                            sm
+                            size='w-[40px] h-[40px]'
                             style='bg-hover-600 text-white'
                         />
                     </div>
@@ -92,7 +91,7 @@ const SidebarRight = () => {
                                     title={item?.title}
                                     artists={item?.artistsNames}
                                     sid={item?.encodeId}
-                                    sm
+                                    size='w-[40px] h-[40px]'
                                 />
                             ))}
                         </Scrollbars>

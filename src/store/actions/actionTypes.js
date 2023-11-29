@@ -11,7 +11,8 @@ const actionType = {
     //Music
     PLAY_MUSIC: "PLAY_MUSIC",
     SET_ALBUM: "SET_ALBUM",
-    PLAY_LIST: "PLAY_LIST"
+    PLAY_LIST: "PLAY_LIST",
+    SEARCH: "SEARCH"
 }
 
 export default actionType;
