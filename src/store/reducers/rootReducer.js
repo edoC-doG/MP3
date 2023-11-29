@@ -13,7 +13,7 @@ const commonConfig = {
 const musicConfig = {
     ...commonConfig,
     key: 'music',
-    whitelist: ['curSongId', 'curSongData', 'curPlayList']
+    whitelist: ['curSongId', 'curSongData', 'curPlayList', 'recentSongs']
 }
 
 

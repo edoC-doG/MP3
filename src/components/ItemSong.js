@@ -13,6 +13,7 @@ const ItemSong = ({ thumbnail, title, artists, releaseDate, sid, order, percent,
             onClick={() => {
                 dispatch(actions.getMusicCur(sid))
                 dispatch(actions.playMusic(true))
+                dispatch(actions.setRecent({thumbnail, title, sid, artists}))
             }}
             className={`w-full flex flex-auto justify-between items-center p-[10px] gap-[10px] rounded-md cursor-pointer ${style || 'text-black  hover:bg-primary-400 '
                 }`}

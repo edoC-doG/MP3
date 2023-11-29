@@ -14,6 +14,7 @@ const ListSongItem = ({ songData }) => {
         dispatch(actions.getMusicCur(id))
         dispatch(actions.playMusic(true))
         dispatch(actions.playAlbum(true))
+        dispatch(actions.setRecent({ thumbnail: songData?.thumbnail, title: songData?.title, sid: songData?.sid, artists: songData?.artistsNames }))
     }
     return (
         <div

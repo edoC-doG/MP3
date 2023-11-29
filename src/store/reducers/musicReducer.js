@@ -8,6 +8,7 @@ const initState = {
     isAlbum: false,
     songs: null,
     curPlayList: null,
+    recentSongs: [],
 }
 
 const musicReducer = (state = initState, action) => {
@@ -41,6 +42,21 @@ const musicReducer = (state = initState, action) => {
             return {
                 ...state,
                 curPlayList: action.pid || null
+            }
+        case actionType.SET_RECENT:
+            let songs = state.recentSongs;
+            if (action.data) {
+                if (songs?.some(i => i.sid === action.data.sid)) {
+                    songs = songs.filter((i) => i.sid !== action.data.sid)
+                }
+                if (songs.length > 19) {
+                    songs = songs.filter((i, idx, self) => idx !== self.length - 1)
+                }
+                songs = [action.data, ...songs]
+            }
+            return {
+                ...state,
+                recentSongs: songs
             }
         default:
             return state
