@@ -12,7 +12,8 @@ const path = {
     ALL: 'tat-ca',
     SONG: 'bai-hat',
     PLAYLIST_SEARCH: 'playlist',
-    HOME_SINGER: 'nghe-si/:singer',
+    HOME_SINGER: ':singer',
+    HOME_ARTIST_SINGER: 'nghe-si/:singer',
 }
 
 export default path

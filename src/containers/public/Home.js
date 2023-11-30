@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Section, Slider, NewRelease, ChartSection, Artist } from '../../components';
+import { Section, Sliders, NewRelease, ChartSection, Artist } from '../../components';
 import { useSelector } from 'react-redux';
 import WeekRank from './WeekRank';
 import { Link } from 'react-router-dom';
-import Sliders from 'react-slick';
+import Slider from 'react-slick';
 
 const Home = () => {
   const settings = {
@@ -16,7 +16,7 @@ const Home = () => {
   const { chill, loveLife, remix, mood, artistsTrending, top100, albumHot, weekChart, singers } = useSelector(state => state.app)
   return (
     <div className='overflow-y-auto w-full'>
-      <Slider />
+      <Sliders />
       <NewRelease />
       {chill && <Section data={chill} />}
       {loveLife && <Section data={loveLife} />}
@@ -25,7 +25,7 @@ const Home = () => {
       {artistsTrending && <Section data={artistsTrending} />}
       <ChartSection />
       {singers && <div className='flex items-center px-[43px] w-full mt-12'>
-        <Sliders {...settings}>
+        <Slider {...settings}>
           {singers?.map(item => (
             <div
               key={item.id}
@@ -38,7 +38,7 @@ const Home = () => {
               />
             </div>
           ))}
-        </Sliders>
+        </Slider>
       </div>}
       <div className='flex items-center px-[43px] w-full mt-8'>
         {weekChart?.map(item => (

@@ -11,7 +11,7 @@ const Section = ({ data }) => {
                 <span className='text-xs'>TẤT CẢ</span>
             </div>
             <div
-                className='flex items-start justify-between'
+                className='flex'
             >
                 {data && data?.items?.length > 0 && data.items.filter((item, idx) => idx <= 4)?.map((item) => (
                     <SectionItem

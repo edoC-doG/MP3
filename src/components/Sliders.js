@@ -5,7 +5,7 @@ import * as actions from '../store/actions'
 import { useNavigate } from 'react-router-dom'
 
 
-const Slider = () => {
+const Sliders = () => {
   const { banner } = useSelector(state => state.app)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -61,7 +61,7 @@ const Slider = () => {
   }
 
   return (
-    <div className='w-full overflow-hidden px-[59px]'>
+    <div className='w-full overflow-hidden px-[59px] mt-[40px]'>
       <div className='flex gap-8 pt-8'>
         {banner?.map((item, index) => (
           <img
@@ -76,4 +76,4 @@ const Slider = () => {
   )
 }
 
-export default Slider
+export default Sliders
