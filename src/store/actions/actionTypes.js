@@ -12,7 +12,7 @@ const actionType = {
     PLAY_MUSIC: "PLAY_MUSIC",
     SET_ALBUM: "SET_ALBUM",
     PLAY_LIST: "PLAY_LIST",
-    SEARCH: "SEARCH"
+    SEARCH: "SEARCH",
 }
 
 export default actionType;

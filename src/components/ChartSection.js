@@ -80,7 +80,6 @@ const ChartSection = () => {
             intersect: false,
         }
     }
-    console.log(rank)
     useEffect(() => {
         const labels = (chart?.times?.filter(item => + item.hour % 2 === 0)?.map((item) => `${item.hour}:00`) || [])
         const datasets = []

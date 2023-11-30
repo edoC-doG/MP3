@@ -4,6 +4,7 @@ import * as actions from '../store/actions';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import path from './../utils/path';
+import { TfiClose } from 'react-icons/tfi';
 
 const { TfiSearch } = icons
 
@@ -25,7 +26,13 @@ const Search = () => {
     }
 
     return (
-        <div className='w-full flex items-center'>
+        <div className='w-full flex items-center relative'>
+            <span
+                className='absolute right-4 cursor-pointer opacity-70'
+                onClick={() => setKeyword("")}
+            >
+                <TfiClose />
+            </span>
             <span className='h-10 pl-4 bg-[#F2F2F2] rounded-l-[999px] flex items-center justify-center text-gray-500'
             >
                 <TfiSearch />

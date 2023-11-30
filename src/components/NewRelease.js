@@ -40,7 +40,7 @@ const NewRelease = () => {
                     QUỐC TẾ
                 </button>
             </div>
-            <div className='flex flex-wrap w-full min-h-[190px] h-[325px] overflow-hidden'>
+            <div className='flex flex-wrap w-full min-h-[190px] max-h-[350px] overflow-hidden'>
                 {playList?.map((item) => (
                     <div className="w-[45%] min-[1024px]:w-[30%]">
                         <ItemSong

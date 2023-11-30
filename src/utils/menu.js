@@ -1,7 +1,7 @@
 import icons from "./icons"
 
 
-const { MdOutlineLibraryMusic, BsDisc ,HiOutlineChartPie, FaRegFolderOpen} = icons
+const { MdOutlineLibraryMusic, BsDisc, HiOutlineChartPie, FaRegFolderOpen } = icons
 export const sidebarMenu = [
     {
         path: '',
@@ -23,5 +23,20 @@ export const sidebarMenu = [
         path: 'mymusic',
         text: 'Cá nhân',
         icons: <MdOutlineLibraryMusic size={24} />
+    },
+];
+export const searchMenu = [
+    {
+        path: 'tat-ca',
+        text: 'Tất cả',
+    },
+    {
+        path: 'bai-hat',
+        text: 'Bài Hát',
+        end: true
+    },
+    {
+        path: 'playlist',
+        text: 'PLAYLIST/ALBUM',
     },
 ]
