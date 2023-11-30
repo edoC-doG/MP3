@@ -45,11 +45,11 @@ const SearchAll = () => {
                 </h3>
                 <div className='flex justify-between flex-wrap w-full'>
                     {searchData?.songs?.map((item, index) => (
-                        <div className={`flex-auto w-[45%] ${index % 2 !== 0 ? "pl-4" : "pr-4"}  `}>
+                        <div key={index} className={`flex-auto w-[45%] ${index % 2 !== 0 ? "pl-4" : "pr-4"}  `}>
                             <ListSongItem
-                                key={index}
                                 songData={item}
                                 isHideAlbum
+                                isHideNode
                             />
                         </div>
                     ))}

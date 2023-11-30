@@ -16,3 +16,16 @@
   text-shadow: 1px 1px 0 #28b99a, -1px 1px 0 #28b99a, -1px -1px 0 #28b99a,
     1px -1px 0 #28b99a;
 }
+
+.slick-next::before,
+.slick-prev::before {
+  font-size: 38px !important;
+}
+
+.slick-next {
+  right: -15px !important;
+}
+
+.slick-prev {
+  left: -15px !important;
+}

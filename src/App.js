@@ -6,6 +6,9 @@ import * as action from './store/actions'
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 function App() {
   const dispatch = useDispatch()

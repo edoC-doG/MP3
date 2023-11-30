@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 const Search = () => {
     const { keyword } = useSelector(state => state.music)
-    console.log(keyword)
     const notActiveStyle = 'px-4 hover:text-hover-600  font-semibold cursor-pointer';
     const activeStyle = 'px-4 hover:text-hover-600 font-semibold cursor-pointer border-b-2 border-hover-600 text-hover-600 h-[52px] flex items-center';
     return (

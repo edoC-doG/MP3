@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 
 const { BsMusicNoteBeamed } = icons
 
-const ListSongItem = ({ songData, isHideAlbum }) => {
+const ListSongItem = ({ songData, isHideAlbum, isHideNode }) => {
     const id = songData?.encodeId
     const dispatch = useDispatch()
     const handleClick = () => {
@@ -22,7 +22,7 @@ const ListSongItem = ({ songData, isHideAlbum }) => {
             onClick={() => handleClick()}
         >
             <div className='flex items-center gap-3 flex-1'>
-                {!isHideAlbum && <span><BsMusicNoteBeamed /></span>}
+                {isHideNode && <span><BsMusicNoteBeamed /></span>}
                 <img
                     src={songData?.thumbnail}
                     alt="thumbnail"

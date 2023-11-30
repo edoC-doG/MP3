@@ -21,7 +21,7 @@ const SectionItem = ({ link, thumbnailM, title, sortDescription, artistsNames, d
     }
     return (
         <div
-            className='flex flex-col gap-3 w-1/6 flex-auto text-sm cursor-pointer'
+            className='flex flex-col justify-start gap-3 w-1/5 p-4 text-sm cursor-pointer'
             onClick={() => {
                 navigate(link?.split('.')[0], { state: { playAlbum: false } })
             }}

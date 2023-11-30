@@ -51,3 +51,18 @@ export const search = (keyword) => async (dispatch) => {
         })
     }
 }
+export const getSearchSong = (pid) => async (dispatch) => {
+    try {
+        const res = await apis.apiGetDetailPlayList(pid)
+        if (res.data.err === 0) {
+            dispatch({ type: actionType.PLAY_LIST, songs: res.data.data.song.items })
+        } else {
+            dispatch({ type: actionType.PLAY_LIST, songs: null })
+        }
+    } catch (error) {
+        dispatch({
+            type: actionType.PLAY_LIST,
+            songs: null
+        })
+    }
+}
