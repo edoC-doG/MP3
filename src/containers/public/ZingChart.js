@@ -53,7 +53,7 @@ const ZingChart = () => {
                             encodeId: Object.keys(chartData?.RTChart?.chart?.items)[i]
                         })
                     }
-                    const rs = counters.find(i => i.data.some(n => n === (+tooltip.body[0]?.lines[0] || [])?.replace(',', '')))
+                    const rs = counters.find(i => i.data.some(n => n === ((+tooltip.body[0] || [])?.lines[0] || [])?.replace(',', '')))
                     setSelect(rs.encodeId)
                     const newTooltipDate = {
                         opacity: 1,

@@ -21,9 +21,9 @@ const SectionItem = ({ link, thumbnailM, title, sortDescription, artistsNames, d
     }
     return (
         <div
-            className='flex flex-col justify-start gap-3 w-1/5 p-4 text-sm cursor-pointer'
+            className='flex flex-col justify-start gap-3 flex-1 p-4 text-sm cursor-pointer'
             onClick={() => {
-                navigate(link?.split('.')[0], { state: { playAlbum: false } })
+                navigate((link?.split('.')[0] || []), { state: { playAlbum: false } })
             }}
         >
             <div
@@ -38,7 +38,7 @@ const SectionItem = ({ link, thumbnailM, title, sortDescription, artistsNames, d
                             className='p-1 border border-white rounded-full' size={35}
                             onClick={(e) => {
                                 e.stopPropagation()
-                                navigate(link?.split('.')[0], { state: { playAlbum: true } })
+                                navigate((link?.split('.')[0] || []), { state: { playAlbum: true } })
                             }}
                         />
                     </span>

@@ -32,8 +32,10 @@ const Play = ({ setShowSideBarR }) => {
     const [isRepeat, setRepeat] = useState(0)
     const [isLoad, setIsLoad] = useState(true)
     const [volume, setVolume] = useState(100)
+    const [isHover, setIsHover] = useState(false)
     const thumbRef = useRef()
     const checkRef = useRef()
+    const volRef = useRef()
 
     useEffect(() => {
         const fetchSongDetail = async () => {
@@ -98,7 +100,11 @@ const Play = ({ setShowSideBarR }) => {
 
     useEffect(() => {
         audio.volume = volume / 100
+        if (volRef.current) {
+            volRef.current.style.cssText = `right:${100 - volume}%`
+        }
     }, [volume])
+
 
     const handlePlay = async () => {
         if (isPlaying) {
@@ -216,9 +222,16 @@ const Play = ({ setShowSideBarR }) => {
                     <span className='text-[#32323D]'>{moment.utc(songInfo?.duration * 1000).format('mm:ss')}</span>
                 </div>
             </div>
-            <div className="w-[30%] flex-auto flex items-center justify-end gap-4 cursor-pointer">
-                <div className='flex gap-2 items-center'>
+            <div className="w-[30%] hidden flex-auto min-[840px]:flex items-center justify-end gap-4 cursor-pointer">
+                <div
+                    className='flex gap-2 items-center'
+                    onMouseEnter={() => setIsHover(true)}
+                    onMouseLeave={() => setIsHover(false)}
+                >
                     <span onClick={() => setVolume(prev => +prev === 0 ? 60 : 0)}>{+volume === 0 ? <RiVolumeMuteLine size={18} /> : <RiVolumeUpLine size={18} />}</span>
+                    <div className={`${isHover ? "hidden" : "relative"} w-[130px] h-1 bg-white rounded-l-full rounded-r-full relative`}>
+                        <div ref={volRef} className='absolute left-0 bottom-0 top-0 bg-hover-600 rounded-l-full rounded-r-full'></div>
+                    </div>
                     <input
                         type="range"
                         step={1}
@@ -226,7 +239,9 @@ const Play = ({ setShowSideBarR }) => {
                         max={100}
                         value={volume}
                         onChange={(e) => setVolume(e.target.value)}
+                        className={`w-[130px] ${isHover ? "inline" : "hidden"}`}
                     />
+
                 </div>
                 <span
                     className='p-1 rounded-md  hover:bg-primary-300 '

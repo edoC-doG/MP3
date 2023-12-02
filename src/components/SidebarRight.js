@@ -64,7 +64,7 @@ const SidebarRight = () => {
                 </div>
                 : <div className='w-full flex flex-auto flex-col'>
                     <div className='flex-none'>
-                        <ItemSong
+                        {curSongId && <ItemSong
                             key={curSongData.encodeId}
                             thumbnail={curSongData?.thumbnail}
                             title={curSongData?.title}
@@ -72,7 +72,7 @@ const SidebarRight = () => {
                             sid={curSongData?.encodeId}
                             size='w-[40px] h-[40px]'
                             style='bg-hover-600 text-white'
-                        />
+                        />}
                     </div>
                     <div className='flex flex-col text-black pt-[15px] pb-[5px] px-2'>
                         <span className='text-sm font-bold'>Tiếp theo</span>

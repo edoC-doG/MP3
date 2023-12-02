@@ -63,7 +63,7 @@ const ChartSection = () => {
                             encodeId: Object.keys(chart?.items)[i]
                         })
                     }
-                    const rs = counters.find(i => i.data.some(n => n === +tooltip.body[0]?.lines[0]?.replace(',', '')))
+                    const rs = counters.find(i => i.data.some(n => n === ((+tooltip.body[0] || [])?.lines[0] || [])?.replace(',', '')))
                     setSelect(rs.encodeId)
                     const newTooltipDate = {
                         opacity: 1,
@@ -99,16 +99,16 @@ const ChartSection = () => {
         }
     }, [chart])
     return (
-        <div className=' px-[59px] mt-12 relative max-h-[430px]'>
-            <img src={chartImage} alt="" className='w-full object-cover rounded-md max-h-[430px]' />
+        <div className=' px-[59px] mt-12 relative   :max-h-[430px] h-[760px]'>
+            <img src={chartImage} alt="" className='w-full object-cover rounded-md min-[1324px]:max-h-[430px] h-[760px]' />
             <div className='absolute rounded-md top-0 bottom-0 left-[59px] right-[59px] z-10 bg-gradient-to-tr from-[rgba(65,15,101,0.95)] to-[#b122b9] '></div>
             <div className='absolute z-20 top-0 bottom-0 left-[59px] right-[59px] p-5 flex flex-col gap-8'>
                 <Link to={path.ZING_CHART} className='inline-flex gap-2 items-center text-white hover:text-green-500'>
                     <h3 className='text-2xl font-bold'>#zingchart</h3>
                     <span><BsFillPlayFill size={25} color='green' className='p-1 rounded-full bg-white' /></span>
                 </Link>
-                <div className='flex gap-4 h-full'>
-                    <div className='flex-3 flex flex-col h-[10%] gap-4'>
+                <div className='min-[1324px]:flex-row flex flex-col gap-4 h-full'>
+                    <div className='flex-3 flex flex-col gap-4'>
                         {result?.map((item, index) => (
                             <ItemSong
                                 key={item.encodeId}
@@ -123,7 +123,7 @@ const ChartSection = () => {
                         ))}
                         <Link to={path.ZING_CHART} className='text-white  px-4 py-2 rounded-l-full rounded-r-full border border-white m-auto w-fit'>Xem Thêm</Link>
                     </div>
-                    <div className='flex-7 h-[90%] relative '>
+                    <div className='flex-7 order-first min-[1324px]:order-last min-[1324px]:w-[500px] h-[80%] relative '>
                         {data && (<Line ref={chartRef} data={data} options={options} />)}
                         <div className='tooltip' style={{ top: tooltipState.top, left: tooltipState.left, opacity: tooltipState.opacity, position: 'absolute' }}>
                             <ItemSong

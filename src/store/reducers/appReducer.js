@@ -17,6 +17,7 @@ const initState = {
     rank: {},
     singers: null,
     scrollTop: true,
+    currentWidth: null,
 }
 
 const appReducer = (state = initState, action) => {
@@ -48,6 +49,11 @@ const appReducer = (state = initState, action) => {
             return {
                 ...state,
                 scrollTop: action.flag
+            }
+        case actionType.CURRENT_WIDTH:
+            return {
+                ...state,
+                currentWidth: action.w
             }
         default:
             return state

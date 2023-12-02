@@ -14,6 +14,7 @@ import { apiGetChartHome } from "./apis";
 function App() {
   const dispatch = useDispatch()
   const [weekChart, setWeekChart] = useState(null)
+  const [currentWidth, setCurWidth] = useState(null)
   useEffect(() => {
     dispatch(action.getHome())
     const fetchChartData = async () => {
@@ -24,6 +25,23 @@ function App() {
     }
     fetchChartData()
   }, [dispatch])
+
+  const setWidth = (e) => {
+    setCurWidth(e.target.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', setWidth)
+    return () => {
+      window.removeEventListener('resize', setWidth)
+    }
+  }, [])
+
+  useEffect(() => {
+    dispatch(action.setCurrentWidth(currentWidth))
+  }, [currentWidth])
+
+
 
   return (
     <>
