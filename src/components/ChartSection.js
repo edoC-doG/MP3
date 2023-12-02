@@ -2,13 +2,12 @@ import React, { memo, useEffect, useRef, useState } from 'react'
 import { Line } from 'react-chartjs-2'
 import { Chart } from 'chart.js/auto'
 import { useSelector } from 'react-redux';
-import chartImage from "../assets/imgs/chart.png"
+import chartImage from "../assets/imgs/chart-1.jpg"
 import { ItemSong } from './';
 import _ from 'lodash';
 import { Link } from 'react-router-dom'
 import path from '../utils/path'
 import icons from '../utils/icons';
-import ZingChart from './../containers/public/ZingChart';
 
 const { BsFillPlayFill } = icons
 

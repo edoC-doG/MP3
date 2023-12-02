@@ -17,6 +17,11 @@
     1px -1px 0 #28b99a;
 }
 
+.text-shadow-no4 {
+  text-shadow: 1px 1px 0 #73737a, -1px 1px 0 #73737a, -1px -1px 0 #73737a,
+    1px -1px 0 #73737a;
+}
+
 .slick-next::before,
 .slick-prev::before {
   font-size: 38px !important;

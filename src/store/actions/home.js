@@ -23,3 +23,8 @@ export const getHome = () => async (dispatch) => {
         })
     }
 }
+
+export const zeroScrollTop = (flag) => ({
+    type: actionType.ZERO_SCROLL,
+    flag
+})

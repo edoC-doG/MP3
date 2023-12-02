@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import * as apis from './../../apis';
 import icons from "../../utils/icons"
 import { Artist, ItemSong, Section } from "../../components"
+import { useSelector } from 'react-redux';
 
 const { AiOutlineUserAdd, BsFillPlayFill } = icons
 

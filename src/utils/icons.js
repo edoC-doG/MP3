@@ -1,4 +1,4 @@
-import { MdOutlineLibraryMusic, MdSkipNext, MdSkipPrevious } from 'react-icons/md'
+import { MdOutlineLibraryMusic, MdSkipNext, MdSkipPrevious, MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md'
 import { BsDisc, BsFillPlayFill, BsPauseFill, BsMusicNoteBeamed, BsDot, BsMusicNoteList } from 'react-icons/bs'
 import { HiOutlineChartPie, HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi'
 import { FaRegFolderOpen } from 'react-icons/fa'
@@ -36,6 +36,8 @@ const icons = {
   ImBin,
   AiOutlineUserAdd,
   TfiClose,
+  MdArrowBackIosNew,
+  MdArrowForwardIos
 }
 
 export default icons

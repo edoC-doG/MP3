@@ -84,3 +84,14 @@ export const apiGetArtist = (alias) => new Promise(async (resolve, reject) => {
         reject(error)
     }
 })
+export const apiGetChartHome = () => new Promise(async (resolve, reject) => {
+    try {
+        const res = await axios({
+            url: '/charthome',
+            method: 'get',
+        })
+        resolve(res)
+    } catch (error) {
+        reject(error)
+    }
+})

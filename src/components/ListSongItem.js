@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 
 const { BsMusicNoteBeamed } = icons
 
-const ListSongItem = ({ songData, isHideAlbum, isHideNode }) => {
+const ListSongItem = ({ songData, isHideAlbum, isHideNode, order }) => {
     const id = songData?.encodeId
     const dispatch = useDispatch()
     const handleClick = () => {
@@ -22,6 +22,7 @@ const ListSongItem = ({ songData, isHideAlbum, isHideNode }) => {
             onClick={() => handleClick()}
         >
             <div className='flex items-center gap-3 flex-1'>
+                {order && <span className={`${order === 1 ? 'text-shadow-no1' : order === 2 ? 'text-shadow-no2' : order === 3 ? 'text-shadow-no3' : "text-shadow-no4 "} text-white text-[32px] flex justify-center items-center flex-none w-[10%]`}>{order}</span>}
                 {isHideNode && <span><BsMusicNoteBeamed /></span>}
                 <img
                     src={songData?.thumbnail}
@@ -36,7 +37,7 @@ const ListSongItem = ({ songData, isHideAlbum, isHideNode }) => {
                     <span className='text-primary-500 text-xs'>{songData?.artistsNames}</span>
                 </span>
             </div>
-            {!isHideAlbum && <div className='flex items-center justify-center flex-1 text-primary-500'>
+            {!isHideAlbum && <div className='flex items-center justify-center flex-1 text-primary-500 text-xs'>
                 {songData?.album?.title?.length > 30 ? `${songData?.album?.title?.slice(0, 30)}...` : songData?.album?.title}
             </div>}
             <div className='flex items-center justify-end flex-1 text-primary-500 text-xs'>

@@ -13,6 +13,7 @@ const actionType = {
     SET_ALBUM: "SET_ALBUM",
     PLAY_LIST: "PLAY_LIST",
     SEARCH: "SEARCH",
+    ZERO_SCROLL: "ZERO_SCROLL"
 }
 
 export default actionType;
