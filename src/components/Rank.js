@@ -28,7 +28,7 @@ const Rank = ({ data, isHideAlbum, number, link }) => {
                 <button
                     type='button'
                     className='px-6 my-4 py-2 border border-hover-600 rounded-l-full rounded-r-full text-hover-600 text-sm hover:text-white hover:bg-hover-600'
-                    onClick={() => link ? navigate((link.split('.')[0] || [])) : setShow(prev => !prev)}
+                    onClick={() => link ? navigate(link.split('.')[0]) : setShow(prev => !prev)}
                 >
                     {isShow ? "Ẩn bớt" : "Xem tất cả"}
                 </button>

@@ -17,7 +17,7 @@ const WeekRank = ({ weekChart }) => {
                 <div className='flex gap-8'>
                     {weekChart?.map(item => (
                         <NavLink
-                            to={(item.link.split('.')[0] || [])}
+                            to={item.link.split('.')[0]}
                             className={({ isActive }) => isActive ? activeStyle : notActiveStyle}
                             key={item.chartId}
                         >

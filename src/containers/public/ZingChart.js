@@ -53,7 +53,7 @@ const ZingChart = () => {
                             encodeId: Object.keys(chartData?.RTChart?.chart?.items)[i]
                         })
                     }
-                    const rs = counters.find(i => i.data.some(n => n === ((+tooltip.body[0] || [])?.lines[0] || [])?.replace(',', '')))
+                    const rs = counters.find(i => i.data.some(n => n === +tooltip.body[0]?.lines[0]?.replace(',', '')))
                     setSelect(rs.encodeId)
                     const newTooltipDate = {
                         opacity: 1,
@@ -130,7 +130,7 @@ const ZingChart = () => {
                     <div className='flex gap-4 h-fit'>
                         {chartData?.weekChart && Object.entries(chartData?.weekChart)?.map((item, idx) => (
                             <div className='flex-1 bg-[hsla(0,0%,100%,0.5)] rounded-md px-[10px] py-5 ' key={idx}>
-                                <h3 className='text-[24px] text-[#8D22C3] font-bold'>{(item[0] || []) === "vn" ? "Việt Nam" : (item[0] || []) === "us" ? "US-UK" : (item[0] || []) === "korea" ? "K-Pop" : ""}</h3>
+                                <h3 className='text-[24px] text-[#8D22C3] font-bold'>{(item[0]) === "vn" ? "Việt Nam" : (item[0]) === "us" ? "US-UK" : (item[0] || []) === "korea" ? "K-Pop" : ""}</h3>
                                 <div className='mt-4'>
                                     <Rank
                                         data={(item[1] || [])?.items}

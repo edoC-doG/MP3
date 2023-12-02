@@ -46,7 +46,7 @@ const Home = () => {
           </div>}
           <div className='flex items-center px-[43px] w-full mt-8'>
             {weekChart?.map(item => (
-              <Link to={(item?.link?.split('.')[0] || [])} key={item.link} className='flex-1 px-4'>
+              <Link to={item?.link?.split('.')[0]} key={item.link} className='flex-1 px-4'>
                 <img src={item.cover} alt="cover" className='w-full object-cover rounded-md' />
               </Link>
             ))}

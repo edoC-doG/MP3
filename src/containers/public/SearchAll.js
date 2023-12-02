@@ -6,7 +6,7 @@ import { Artist, ItemSong, ListSongItem, SectionItem } from "../../components"
 const SearchAll = () => {
 
     const { searchData } = useSelector(state => state.music)
-    const artistFl = (searchData?.artists[0] || [])?.totalFollow
+    const artistFl = (searchData?.artists[0])?.totalFollow
     return (
         <div className='w-full flex flex-col px-[60px] gap-[60px]'>
             <div className='flex flex-col'>
