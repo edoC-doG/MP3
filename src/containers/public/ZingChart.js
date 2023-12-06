@@ -112,7 +112,7 @@ const ZingChart = () => {
                                 artists={hoverChart?.artistsNames}
                                 title={hoverChart?.title}
                                 sid={hoverChart?.encodeId}
-                                style='bg-white'
+                                style={`bg-white`}
                             />
                         </div>
                     </div>

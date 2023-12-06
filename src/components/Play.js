@@ -72,9 +72,9 @@ const Play = ({ setShowSideBarR }) => {
         if (isPlaying && thumbRef.current) {
             audio.play()
             intervalId = setInterval(() => {
-                let percent = Math.round(audio.currentTime * 10000 / songInfo.duration) / 100
+                let percent = Math.round(audio?.currentTime * 10000 / songInfo?.duration) / 100
                 thumbRef.current.style.cssText = `right:${100 - percent}%`
-                setCurrent(Math.round(audio.currentTime))
+                setCurrent(Math.round(audio?.currentTime))
             }, 100)
         }
     }, [audio])
@@ -120,8 +120,8 @@ const Play = ({ setShowSideBarR }) => {
         const trackRect = checkRef.current.getBoundingClientRect()
         const percent = Math.round((e.clientX - trackRect.left) * 10000 / trackRect.width) / 100
         thumbRef.current.style.cssText = `right:${100 - percent}%`
-        audio.currentTime = percent * songInfo.duration / 100
-        setCurrent(Math.round(percent * songInfo.duration / 100))
+        audio.currentTime = percent * songInfo?.duration / 100
+        setCurrent(Math.round(percent * songInfo?.duration / 100))
     }
 
     const handleNextSong = () => {
