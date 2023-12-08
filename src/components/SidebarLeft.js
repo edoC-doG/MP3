@@ -4,8 +4,8 @@ import { sidebarMenu } from './../utils/menu';
 import { NavLink, useNavigate } from 'react-router-dom';
 import path from './../utils/path';
 
-const noActiveStyle = "py-2 px-[25px] font-bold text-[#9633c8] text-[13px] flex gap-3 items-center"
-const activeStyle = " py-2 px-[25px] font-bold text-[#32323d] text-[13px] flex gap-3 items-center"
+const noActiveStyle = "py-2 px-[25px] font-bold text-[#32323d] text-[13px] flex gap-3 items-center"
+const activeStyle = " py-2 px-[25px] font-bold text-[#9633c8] text-[13px] flex gap-3 items-center"
 
 const SidebarLeft = () => {
   const navigate = useNavigate()

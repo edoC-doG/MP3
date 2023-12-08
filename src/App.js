@@ -50,7 +50,7 @@ function App() {
           <Route path={path.PUBLIC} element={<Public />}>
             <Route path={path.LOGIN} element={<Login />} />
             <Route path={path.HOME} element={<Home />} />
-            <Route path={path.MY_MUSIC} element={<Personal />} />
+            {/* <Route path={path.MY_MUSIC} element={<Personal />} /> */}
             <Route path={path.ALBUM_TITLE_PID} element={<Album />} />
             <Route path={path.PLAYLIST_TITLE_PID} element={<Album />} />
             <Route path={path.WEEKRANK_TITLE_PID} element={<WeekRank weekChart={weekChart && Object.values(weekChart)} />} />

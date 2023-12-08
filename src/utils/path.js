@@ -3,7 +3,7 @@ const path = {
     HOME: '',
     LOGIN: 'login',
     STAR: '*',
-    MY_MUSIC: 'mymusic',
+    // MY_MUSIC: 'mymusic',
     ALBUM_TITLE_PID: 'album/:title/:pid',
     PLAYLIST_TITLE_PID: 'playlist/:title/:pid',
     WEEKRANK_TITLE_PID: 'zing-chart-tuan/:title/:pid',
